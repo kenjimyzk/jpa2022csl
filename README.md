@@ -140,6 +140,53 @@ Wordファイルでは一部文献リストが正確に表示されない箇所�
 - `--reference-doc=<yourtemplate.docx>`のようにオプションを与えると自分で設定したテンプレートを使うことができます。
 - `remove-unnecessary-spaces.lua`を同じフォルダ内に置きPandocを実行するときに`--lua-filter=remove-unnecessary-spaces.lua`のようにオプションとして指定してください。markdownの文中で文献キーを用いる際には前後にスペースを入れる必要がありますが，wordファイルにこのスペースが残ってしまうので，それを消すための処理を間に挟むことができます。また，CSLの仕様（？）で「et al.」の前後には必ずスペースが入ってしまうようなのですが，日本語文献の「他」の場合には不要なのでそれらを取り除く処理を含めています。
 
+## 日本語文献のあいうえお順ソートと言語別出力（拡張機能）
+
+`jpa2022-split.csl` と補助スクリプト `sort_json.py` を使用することで、参考文献リストを以下の順序で出力できます。
+
+1.  **日本語文献**（あいうえお順）
+2.  **英語（その他の言語）文献**（アルファベット順）
+
+通常の `jpa2022.csl` では漢字コード順になってしまう日本語文献を、正しくあいうえお順（五十音順）に並べ替えるための機能です。
+
+### 使い方
+
+この機能を利用するには、以下の手順でJSONデータを変換する必要があります。
+
+#### 1. JSONデータの準備
+
+Zoteroからエクスポートした `Better CSL JSON` ファイルを用意します（例: `opensource.json`）。
+このファイルに対して、付属の `sort_json.py` スクリプトを実行します。
+
+```bash
+python3 sort_json.py
+```
+
+このスクリプトは以下の処理を行います：
+*   日本語文献を自動検出し、`yomi` フィールド（またはスクリプト内の辞書）に基づいてローマ字の読みを `curator` フィールドに生成します。
+*   これにより、CSLプロセッサがローマ字を日本語ロケール（あいうえお順）で正しくソートできるようになります。
+*   処理結果は `*-sorted.json`（例: `opensource-sorted.json`）として保存されます。
+
+**注意:** 読み仮名データがない著者については、スクリプト内の `kanji_map` 変数に手動で追加する必要があります。
+
+#### 2. Pandoc / Quarto での変換
+
+生成された `*-sorted.json` と `jpa2022-split.csl` を指定して変換を行います。
+
+**Pandocの場合:**
+```bash
+pandoc input.md --citeproc --bibliography=opensource-sorted.json --csl=jpa2022-split.csl ...
+```
+
+**Quartoの場合:**
+YAMLヘッダーで以下のように指定します。
+```yaml
+bibliography: opensource-sorted.json
+csl: jpa2022-split.csl
+```
+
+これにより、日本語文献があいうえお順で先頭に、英語文献がその後に配置されたPDF/HTMLが生成されます。
+
 ## ライセンス
 
 `jpa2022.csl`については改変元の`apa.csl`と同じCreative Commons Attribution-ShareAlike 3.0 Licenseです。

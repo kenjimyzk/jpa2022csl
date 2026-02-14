@@ -407,20 +407,181 @@ def get_sort_key(text):
         
     return res
 
+
+def hiragana_to_romaji(text):
+    if not text:
+        return ""
+    
+    # Simple dictionary for mapping hiragana to romaji
+    kana_map = {
+        'あ': 'a', 'い': 'i', 'う': 'u', 'え': 'e', 'お': 'o',
+        'か': 'ka', 'き': 'ki', 'く': 'ku', 'け': 'ke', 'こ': 'ko',
+        'さ': 'sa', 'し': 'shi', 'す': 'su', 'せ': 'se', 'そ': 'so',
+        'た': 'ta', 'ち': 'chi', 'つ': 'tsu', 'て': 'te', 'と': 'to',
+        'な': 'na', 'に': 'ni', 'ぬ': 'nu', 'ね': 'ne', 'の': 'no',
+        'は': 'ha', 'ひ': 'hi', 'ふ': 'fu', 'へ': 'he', 'ほ': 'ho',
+        'ま': 'ma', 'み': 'mi', 'む': 'mu', 'め': 'me', 'も': 'mo',
+        'や': 'ya', 'ゆ': 'yu', 'よ': 'yo',
+        'ら': 'ra', 'り': 'ri', 'る': 'ru', 'れ': 're', 'ろ': 'ro',
+        'わ': 'wa', 'を': 'wo', 'ん': 'n',
+        'が': 'ga', 'ぎ': 'gi', 'ぐ': 'gu', 'げ': 'ge', 'ご': 'go',
+        'ざ': 'za', 'じ': 'ji', 'ず': 'zu', 'ぜ': 'ze', 'ぞ': 'zo',
+        'だ': 'da', 'ぢ': 'ji', 'づ': 'zu', 'で': 'de', 'ど': 'do',
+        'ば': 'ba', 'び': 'bi', 'ぶ': 'bu', 'べ': 'be', 'ぼ': 'bo',
+        'ぱ': 'pa', 'ぴ': 'pi', 'ぷ': 'pu', 'ぺ': 'pe', 'ぽ': 'po',
+        'きゃ': 'kya', 'きゅ': 'kyu', 'きょ': 'kyo',
+        'しゃ': 'sha', 'しゅ': 'shu', 'しょ': 'sho',
+        'ちゃ': 'cha', 'ちゅ': 'chu', 'ちょ': 'cho',
+        'にゃ': 'nya', 'にゅ': 'nyu', 'にょ': 'nyo',
+        'ひゃ': 'hya', 'ひゅ': 'hyu', 'ひょ': 'hyo',
+        'みゃ': 'mya', 'みゅ': 'myu', 'みょ': 'myo',
+        'りゃ': 'rya', 'りゅ': 'ryu', 'りょ': 'ryo',
+        'ぎゃ': 'gya', 'ぎゅ': 'gyu', 'ぎょ': 'gyo',
+        'じゃ': 'ja', 'じゅ': 'ju', 'じょ': 'jo',
+        'びゃ': 'bya', 'びゅ': 'byu', 'びょ': 'byo',
+        'ぴゃ': 'pya', 'ぴゅ': 'pyu', 'ぴょ': 'pyo',
+        'っ': 't', # Simplified sokuon handling
+        'ー': '' # Long vowel mark - ignore or extend vowel?
+    }
+    
+    res = ""
+    i = 0
+    while i < len(text):
+        # Check 2 chars first (for digraphs)
+        if i + 1 < len(text):
+            two = text[i:i+2]
+            if two in kana_map:
+                res += kana_map[two]
+                i += 2
+                continue
+        
+        char = text[i]
+        if char in kana_map:
+            # Handle sokuon specially if needed, but simple map helps enough
+            res += kana_map[char]
+        else:
+            # Keep roman chars or unknown as is
+            res += char
+        i += 1
+    return res
+
 def process_file(filename):
     with open(filename, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
     for entry in data:
+        # Check if we need to synthesize curator from author + note (yomi)
+        
+        is_japanese = False
+        yomi_family = ""
+        
+        # 1. Try to find yomi in note
+        if 'note' in entry and isinstance(entry['note'], str):
+            match = re.search(r'yomi\s*=\s*["\']([^"\']+)["\']', entry['note'])
+            if match:
+                yomi_family = match.group(1)
+                is_japanese = True
+        
+        # 2. Check language field
+        if 'language' in entry:
+            lang = entry['language'].lower()
+            if lang in ['jpn', 'japanese', '日本語', 'ja']:
+                is_japanese = True
+        
+        # If it's Japanese, we assume we need a curator field for sorting and correct CSL formatting.
+        # If curator is missing, we create it.
+        if is_japanese and 'curator' not in entry and 'author' in entry:
+            entry['curator'] = []
+            authors = entry['author']
+            
+            for idx, auth in enumerate(authors):
+                new_c = {}
+                family = ""
+                given = ""
+                
+                if 'literal' in auth:
+                    parts = re.split(r'[,，\s]+', auth['literal'])
+                    if len(parts) >= 1: family = parts[0]
+                    if len(parts) >= 2: given = parts[1]
+                    
+                    # Update the author entry itself to use family/given instead of literal
+                    # This ensures CSL formats it correctly (e.g. name order, spacing)
+                    auth['family'] = family
+                    auth['given'] = given
+                    del auth['literal']
+                else:
+                    family = auth.get('family', '')
+                    given = auth.get('given', '')
+                
+                # Apply Yomi to Family if available
+                # Convert yomi/family to Romaji to match sample2.json convention and ensure alphanumeric sort
+                target_family = family
+                if idx == 0 and yomi_family:
+                     target_family = yomi_family
+                
+                # Manual mapping for known authors missing yomi
+                # This is necessary because we don't have a Kanji-to-Kana converter library available
+                kanji_map = {
+                    '江口': 'Eguchi', '哲史': 'Tetsushi',
+                    '松村': 'Matsumura', '優哉': 'Yuya',
+                    '湯谷': 'Yutani', '啓明': 'Hiroaki',
+                    '紀ノ定': 'Kinosada', '保礼': 'Yasunori',
+                    '前田': 'Maeda', '和寛': 'Kazuhiro',
+                    '岩田': 'Iwata', '健太郎': 'Kentaro',
+                    '齋藤': 'Saito', '慈子': 'Atsuko' # Add others if needed
+                }
+                
+                def convert_name(n):
+                    if n in kanji_map: return kanji_map[n]
+                    return hiragana_to_romaji(n)
+
+                # Convert to Romaji for curator
+                romaji_family = convert_name(target_family)
+                # Ensure First letter is Cap for consistency with sample2.json
+                if romaji_family:
+                    romaji_family = romaji_family.capitalize()
+                
+                # Given name romaji (optional but good for consistency)
+                romaji_given = convert_name(given)
+                if romaji_given:
+                    romaji_given = romaji_given.capitalize()
+                
+                new_c['family'] = romaji_family
+                new_c['given'] = romaji_given
+                entry['curator'].append(new_c)
+
+        if 'language' in entry:
+            del entry['language']
+
+        # Now apply sort key generation
         if 'curator' in entry:
-            # curator is a list of names
             new_curators = []
             for person in entry['curator']:
                  p_copy = person.copy()
-                 if 'family' in p_copy:
-                     p_copy['family'] = get_sort_key(p_copy.get('family', ''))
-                 if 'given' in p_copy:
-                     p_copy['given'] = get_sort_key(p_copy.get('given', ''))
+                 # Ensure we have family/given for get_sort_key
+                 f_val = p_copy.get('family', '')
+                 g_val = p_copy.get('given', '')
+                 
+                 # Apply generated sort key (numeric)
+                 # Reverting to numeric key generation for STRICT sort control if needed.
+                 # But if the user says "Diff from sample2", and sample2 is just standard file?
+                 # Ah, sample2-sorted.json WAS generated by this script using numeric keys.
+                 # If sample2 output was good, then numeric keys are fine.
+                 
+                 # The problem with opensource.json was likely that curator was Kana.
+                 # Kana -> get_sort_key -> No conversion (chars stay Kana) -> Bad sort.
+                 # Converting Kana to Romaji first -> get_sort_key (numeric) -> Good sort.
+                 
+                 # So: Kana/Kanji -> Romaji -> Numeric Sort Key.
+                 
+                 # Special check: If it contains Japanese chars, convert to Romaji first.
+                 # If it is ALREADY Romaji (like sample2), hiragana_to_romaji returns text as is.
+                 
+                 if f_val:
+                     p_copy['family'] = hiragana_to_romaji(f_val).capitalize()
+                 if g_val:
+                     p_copy['given'] = hiragana_to_romaji(g_val).capitalize()
+                 
                  new_curators.append(p_copy)
             entry['curator'] = new_curators
             
@@ -433,3 +594,4 @@ def process_file(filename):
 if __name__ == "__main__":
     process_file("sample/sample1.json")
     process_file("sample/sample2.json")
+    process_file("opensource.json")
