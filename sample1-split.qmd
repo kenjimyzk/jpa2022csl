@@ -5,7 +5,7 @@ format:
   pdf:
     pdf-engine: lualatex
     documentclass: ltjsarticle
-bibliography: sample/sample1.json
+bibliography: sample/sample1-sorted.json
 csl: jpa2022-split.csl
 output-file: sample1-split.pdf
 ---
