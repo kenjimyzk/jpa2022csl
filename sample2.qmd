@@ -1,0 +1,16 @@
+---
+title: "jpa2022.csl Sample 2"
+format:
+  pdf:
+    pdf-engine: lualatex
+    documentclass: ltjsarticle
+bibliography: sample/sample2.json
+csl: jpa2022.csl
+output-file: sample2.pdf
+nocite: |
+  @*
+---
+
+<!-- jsonに含まれる文献リストをすべて出力したい場合のデモ-->
+
+# 引用文献
