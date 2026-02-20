@@ -435,7 +435,7 @@
     </choose>
   </macro>
   <macro name="date-bib-j">
-    <group delimiter=" " prefix="（" suffix="）">
+    <group delimiter=" " prefix="(" suffix=")">
       <choose>
         <if is-uncertain-date="issued">
           <text term="circa" form="short"/>
@@ -716,7 +716,7 @@
               </name>
             </names>
           </group>
-          <date variable="submitted" form="numeric" date-parts="year" prefix="（" suffix="）．"/>
+          <date variable="submitted" form="numeric" date-parts="year" prefix="(" suffix=")．"/>
           <text variable="dimensions" suffix="　"/>
           <text variable="jurisdiction"/>
         </group>
@@ -2350,7 +2350,7 @@
       <key variable="status"/>
     </sort>
     <!--手びきでは文中での引用は英でも日でも（）は全角-->
-    <layout prefix="（" suffix="）" delimiter="; ">
+    <layout prefix="(" suffix=")" delimiter="; ">
       <!-- 日文献の場合は全角カンマ，英文献の場合は半角カンマスペース-->
       <choose>
         <if variable="curator host guest" match="any">

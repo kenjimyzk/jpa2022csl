@@ -4,8 +4,8 @@ format:
   pdf:
     pdf-engine: lualatex
     documentclass: ltjsarticle
-bibliography: sample/sample2.json
-csl: jpa2022.csl
+bibliography: sample/sample2-sorted.json
+csl: jpa2022-split.csl
 output-file: sample2.pdf
 nocite: |
   @*

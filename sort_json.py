@@ -1,3 +1,6 @@
+# /// script
+# dependencies = ["pykakasi"]
+# ///
 import json
 import re
 import pykakasi
@@ -644,23 +647,12 @@ def process_file(filename):
                 if idx == 0 and yomi_family:
                     target_family = yomi_family
 
-                def convert_name(n):
-                    """漢字・カタカナ・ひらがなをひらがな経由でローマ字に変換する"""
-                    if not n:
-                        return ""
-                    hira = kanji_to_hiragana(n)
-                    return hiragana_to_romaji(hira)
+                # ひらがなに変換してcuratorに保存（CSLがひらがな順でソート）
+                hira_family = kanji_to_hiragana(target_family)
+                hira_given = kanji_to_hiragana(given)
 
-                romaji_family = convert_name(target_family)
-                if romaji_family:
-                    romaji_family = romaji_family.capitalize()
-
-                romaji_given = convert_name(given)
-                if romaji_given:
-                    romaji_given = romaji_given.capitalize()
-
-                new_c["family"] = romaji_family
-                new_c["given"] = romaji_given
+                new_c["family"] = hira_family
+                new_c["given"] = hira_given
                 entry["curator"].append(new_c)
 
         if "language" in entry:
@@ -674,15 +666,11 @@ def process_file(filename):
                 f_val = p_copy.get("family", "")
                 g_val = p_copy.get("given", "")
 
-                # 漢字・カタカナ・ひらがなを含む任意のテキストをローマ字に変換
+                # ひらがなに変換して保存（ひらがなはUnicode順が五十音順と一致）
                 if f_val:
-                    p_copy["family"] = hiragana_to_romaji(
-                        kanji_to_hiragana(f_val)
-                    ).capitalize()
+                    p_copy["family"] = kanji_to_hiragana(f_val)
                 if g_val:
-                    p_copy["given"] = hiragana_to_romaji(
-                        kanji_to_hiragana(g_val)
-                    ).capitalize()
+                    p_copy["given"] = kanji_to_hiragana(g_val)
 
                 new_curators.append(p_copy)
             entry["curator"] = new_curators
