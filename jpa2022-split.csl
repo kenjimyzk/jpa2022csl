@@ -2008,13 +2008,13 @@
                     <text term="from"/>
                   </group>
                 </if>
-                <else-if>
+                <else>
                   <group delimiter=" ">
                     <text term="retrieved" text-case="capitalize-first"/>
                     <date variable="accessed" form="text" suffix=","/>
                     <text term="from"/>
                   </group>
-                </else-if>
+                </else>
               </choose>
             </if>
           </choose>
@@ -2403,8 +2403,8 @@
             <if variable="curator"><!--日本語文献-->
               <group display="block">
                 <group>
-                  <text macro="author-bib-j" suffix=""/>
-                  <text macro="date-bib-j" suffix="．"/>
+                  <text macro="author-bib-j" suffix=" "/>
+                  <text macro="date-bib-j" suffix="． "/>
                   <text macro="title-and-descriptions-j" suffix="　"/>
                   <text macro="container-j"/>
                   <text macro="event"/>

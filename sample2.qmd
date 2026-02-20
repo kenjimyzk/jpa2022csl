@@ -1,6 +1,7 @@
 ---
 title: "jpa2022.csl Sample 2"
 format:
+  html: default
   pdf:
     pdf-engine: lualatex
     documentclass: ltjsarticle
