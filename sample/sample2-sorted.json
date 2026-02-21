@@ -75,12 +75,12 @@
     "collection-title": "シリーズ統合的認知",
     "curator": [
       {
-        "family": "01201405",
-        "given": "405802105"
+        "family": "Asano",
+        "given": "Noriko"
       },
       {
-        "family": "705105201901",
-        "given": "101203502105"
+        "family": "Yokozawa",
+        "given": "Kazuhiko"
       }
     ],
     "issued": {
@@ -191,8 +191,8 @@
     "container-title": "認知科学",
     "curator": [
       {
-        "family": "503101701",
-        "given": "301303202"
+        "family": "Fukaya",
+        "given": "Tatsushi"
       }
     ],
     "DOI": "10.11225/jcss.18.190",
@@ -221,8 +221,8 @@
     "container-title": "心理学評論",
     "curator": [
       {
-        "family": "503101701",
-        "given": "301303202"
+        "family": "Fukaya",
+        "given": "Tatsushi"
       }
     ],
     "DOI": "10.24602/sjpr.54.2_179",
@@ -250,7 +250,7 @@
     "citation-key": "hanzaihakusho2019",
     "curator": [
       {
-        "family": "50503603205031050310499102703j705"
+        "family": "Houmusougoukenkyujyo"
       }
     ],
     "issued": {
@@ -293,24 +293,24 @@
     "citation-key": "hasegawa2020hajimete",
     "curator": [
       {
-        "family": "501204101901",
-        "given": "305202101203"
+        "family": "Hasegawa",
+        "given": "Toshikazu"
       },
       {
-        "family": "305202705",
-        "given": "601201102"
+        "family": "Tojo",
+        "given": "Masaki"
       },
       {
-        "family": "055202601",
-        "given": "301101202"
+        "family": "Ohshima",
+        "given": "Takashi"
       },
       {
-        "family": "30199405",
-        "given": "705202502105"
+        "family": "Tanno",
+        "given": "Yoshihiko"
       },
       {
-        "family": "502805401101",
-        "given": "40105703102"
+        "family": "Hironaka",
+        "given": "Naoyuki"
       }
     ],
     "edition": "3",
@@ -364,32 +364,32 @@
     "container-title-short": "心理学研究",
     "curator": [
       {
-        "family": "501204101901",
-        "given": "301303102"
+        "family": "Hasegawa",
+        "given": "Tatsuki"
       },
       {
-        "family": "301301",
-        "given": "10140104"
+        "family": "Tada",
+        "given": "Kanae"
       },
       {
-        "family": "705404602303",
-        "given": "503602701"
+        "family": "Yonemitsu",
+        "given": "Fumiya"
       },
       {
-        "family": "02104301",
-        "given": "01703602"
+        "family": "Ikeda",
+        "given": "Ayumi"
       },
       {
-        "family": "7601301",
-        "given": "703102"
+        "family": "Ymada",
+        "given": "Yuki"
       },
       {
-        "family": "301101501202",
-        "given": "105203104"
+        "family": "Takahashi",
+        "given": "Kosuke"
       },
       {
-        "family": "10599305",
-        "given": "502805202"
+        "family": "Kondo",
+        "given": "Hiroshi"
       }
     ],
     "issued": {
@@ -414,12 +414,12 @@
     "container-title": "日本教育心理学会第57回総会発表論文集",
     "curator": [
       {
-        "family": "501701202",
-        "given": "501202603"
+        "family": "Hayashi",
+        "given": "Hajimu"
       },
       {
-        "family": "7601301",
-        "given": "303705202"
+        "family": "Ymada",
+        "given": "Tsuyoshi"
       }
     ],
     "issued": {
@@ -438,8 +438,8 @@
     "citation-key": "hori2009syakai",
     "curator": [
       {
-        "family": "505802",
-        "given": "502805602302"
+        "family": "Hori",
+        "given": "Hiromichi"
       }
     ],
     "edition": "改訂版",
@@ -488,8 +488,8 @@
     "citation-key": "Ichigawa2016jikan",
     "curator": [
       {
-        "family": "02302101901",
-        "given": "601105305"
+        "family": "Ichikawa",
+        "given": "Makoto"
       }
     ],
     "issued": {
@@ -642,16 +642,16 @@
     "container-title": "心理学研究",
     "curator": [
       {
-        "family": "101602204",
-        "given": "703602105"
+        "family": "Kamise",
+        "given": "Yumiko"
       },
       {
-        "family": "301101501202",
-        "given": "40105701"
+        "family": "Takahashi",
+        "given": "Naoya"
       },
       {
-        "family": "701405",
-        "given": "04602"
+        "family": "Yano",
+        "given": "Emi"
       }
     ],
     "DOI": "10.4992/jjpsy.87.15035",
@@ -693,20 +693,20 @@
     "container-title-short": "心理学研究",
     "curator": [
       {
-        "family": "101404601201",
-        "given": "703202"
+        "family": "Kanemasa",
+        "given": "Yuji"
       },
       {
-        "family": "503803603801",
-        "given": "10499301805"
+        "family": "Furumura",
+        "given": "Kentaro"
       },
       {
-        "family": "01201405",
-        "given": "8705203104"
+        "family": "Asano",
+        "given": "Ryosuke"
       },
       {
-        "family": "0180102",
-        "given": "301101202"
+        "family": "Arai",
+        "given": "Takashi"
       }
     ],
     "DOI": "10.4992/jjpsy.92.20013",
@@ -771,8 +771,8 @@
     "container-title-short": "心理学研究",
     "curator": [
       {
-        "family": "101901101602",
-        "given": "4010501102"
+        "family": "Kawakami",
+        "given": "Naoaki"
       }
     ],
     "DOI": "10.4992/jjpsy.91.18060",
@@ -925,8 +925,8 @@
     "citation-key": "mukaida2009hakuron",
     "curator": [
       {
-        "family": "60310102301",
-        "given": "103602105"
+        "family": "Mukaida",
+        "given": "Kumiko"
       }
     ],
     "issued": {
@@ -952,8 +952,8 @@
     "container-title": "発達障害の精神病理 I",
     "curator": [
       {
-        "family": "40102305",
-        "given": "602101"
+        "family": "Naito",
+        "given": "Mika"
       }
     ],
     "editor": [
@@ -1005,8 +1005,8 @@
     "container-title": "千葉大学教育学部研究紀要",
     "curator": [
       {
-        "family": "401101602302",
-        "given": "10402305"
+        "family": "Nakamichi",
+        "given": "Keito"
       }
     ],
     "issued": {
@@ -1055,28 +1055,28 @@
     "container-title": "心理学研究",
     "curator": [
       {
-        "family": "401601301604",
-        "given": "502101802"
+        "family": "Namatame",
+        "given": "Hikari"
       },
       {
-        "family": "02405501801",
-        "given": "01703602"
+        "family": "Inohara",
+        "given": "Ayumi"
       },
       {
-        "family": "01201405",
-        "given": "8705203104"
+        "family": "Asano",
+        "given": "Ryosuke"
       },
       {
-        "family": "02101801202",
-        "given": "301203103"
+        "family": "Igarashi",
+        "given": "Tasuku"
       },
       {
-        "family": "303101605305",
-        "given": "20105802"
+        "family": "Tsukamoto",
+        "given": "Saori"
       },
       {
-        "family": "201901602701",
-        "given": "705105"
+        "family": "Sawamiya",
+        "given": "Yoko"
       }
     ],
     "DOI": "10.4992/jjpsy.92.20206",
@@ -1096,12 +1096,12 @@
     "citation-key": "nojima2018kounin",
     "curator": [
       {
-        "family": "405202601",
-        "given": "101203502105"
+        "family": "Nojima",
+        "given": "Kazuhiko"
       },
       {
-        "family": "202104601203",
-        "given": "10120305"
+        "family": "Shigemasu",
+        "given": "Kazuo"
       }
     ],
     "issued": {
@@ -1251,8 +1251,8 @@
     "container-title": "読売新聞　7月8日夕刊",
     "curator": [
       {
-        "family": "201305",
-        "given": "301303701"
+        "family": "Sato",
+        "given": "Tatsuya"
       }
     ],
     "issued": {
@@ -1277,8 +1277,8 @@
     "citation-key": "sugiura2003kankyohairyo",
     "curator": [
       {
-        "family": "20310203801",
-        "given": "20270399102302"
+        "family": "Sugiura",
+        "given": "Junkichi"
       }
     ],
     "issued": {
@@ -1352,7 +1352,7 @@
     "container-title": "日本心理学会",
     "curator": [
       {
-        "family": "40250599202802101110102"
+        "family": "Nihonshirigakkai"
       }
     ],
     "issued": {
@@ -1407,16 +1407,16 @@
     "container-title": "日本心理学会第82回大会発表論文集",
     "curator": [
       {
-        "family": "303203102",
-        "given": "301101202"
+        "family": "Tsuzuki",
+        "given": "Takashi"
       },
       {
-        "family": "301104301",
-        "given": "703202"
+        "family": "Takeda",
+        "given": "Yuji"
       },
       {
-        "family": "302501",
-        "given": "02303102"
+        "family": "Chiba",
+        "given": "Itsuki"
       }
     ],
     "issued": {
@@ -1465,8 +1465,8 @@
     "container-title": "大学入試がわかる本",
     "curator": [
       {
-        "family": "03201602",
-        "given": "201305202"
+        "family": "Usami",
+        "given": "Satoshi"
       }
     ],
     "editor": [
@@ -1598,12 +1598,12 @@
     "container-title-short": "感情心理学研究",
     "curator": [
       {
-        "family": "701202601",
-        "given": "602505"
+        "family": "Yajima",
+        "given": "miho"
       },
       {
-        "family": "501204101901",
-        "given": "01102801"
+        "family": "Hasegawa",
+        "given": "Akira"
       }
     ],
     "DOI": "10.4092/jsre.27.3_83",
@@ -1723,8 +1723,8 @@
     "container-title": "心理学ワールド",
     "curator": [
       {
-        "family": "20102305",
-        "given": "01303105"
+        "family": "Saito",
+        "given": "Atsuko"
       }
     ],
     "issue": "No.86",

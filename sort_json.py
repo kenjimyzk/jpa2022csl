@@ -683,4 +683,5 @@ def process_file(filename):
 
 
 if __name__ == "__main__":
-    process_file("opensource.json")
+    process_file("sample/sample1.json")
+    process_file("sample/sample2.json")

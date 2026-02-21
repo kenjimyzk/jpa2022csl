@@ -1,10 +1,10 @@
 ---
 title: "jpa2022.csl Sample 2"
 format:
-  html: default
   pdf:
     pdf-engine: lualatex
     documentclass: ltjsarticle
+  html: default
 bibliography: sample2-sorted.json
 csl: ../jpa2022-split.csl
 output-file: sample2.pdf

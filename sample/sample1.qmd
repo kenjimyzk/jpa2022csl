@@ -1,12 +1,13 @@
 ---
-title: "jpa2022.csl Sample"
+title: "jpa2022.csl Sample 1"
 format:
   pdf:
     pdf-engine: lualatex
     documentclass: ltjsarticle
-bibliography: sample/sample1.json
-csl: jpa2022.csl
-output-file: sample.pdf
+  html: default
+bibliography: sample1-sorted.json
+csl: ../jpa2022-split.csl
+output-file: sample1.pdf
 ---
 
 このファイルは「jpa2022.csl」のデモ用のファイルです。
