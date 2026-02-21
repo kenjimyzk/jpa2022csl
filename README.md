@@ -21,13 +21,13 @@ jsonファイルの作り方が特殊なため，以下のソフトウェアと�
 例えば，`sample`フォルダ内の`sample1.md`という原稿ファイルと書誌情報を含んだ`sample1.json`，`jpa2022.csl`を同じファイルに入れてMacならターミナル，Windowsならコマンドプロントで以下のコマンドを実行することで文中の引用および文献が処理された`.docx`ファイルが生成されます。
 
 ```
-pandoc sample1.md -o sample1.docx --citeproc --bibliography=sample1.json --csl=jpa2022.csl
+pandoc sample/sample1.md -o sample1.docx --citeproc --bibliography=sample/sample1.json --csl=jpa2022.csl
 ```
 
 また，参考文献リストのみ欲しいときには`sample`フォルダ内の`sample2.md`のような原稿ファイルを用意して，以下のようなコマンドを実行します。
 
 ```
-pandoc sample2.md -o sample2.docx --citeproc --bibliography=sample2.json --csl=jpa2022.csl
+pandoc sample/sample2.md -o sample2.docx --citeproc --bibliography=sample/sample2.json --csl=jpa2022.csl
 ```
 
 Pandocを用いて引用文献を処理する方法についてさらに知りたい方は以下のリンクが参考になります。
@@ -89,7 +89,7 @@ CSLは複数の言語に対応しているのですが，手びき2022のよう�
 Pandocで以下のようなコマンドを用いるとLaTeXを用いてPDFファイルが生成できます。適切な表示を得るためには，いくつかオプションをつける必要があります。
 
 ```
-pandoc sample2.md -o sample2.pdf --pdf-engine=lualatex -V documentclass=ltjsarticle --wrap=preserve --template=mytemplate.tex --citeproc --bibliography=sample2.json --csl=jpa2022.csl --lua-filter=modify-bibrecord.lua
+pandoc sample/sample2.md -o sample2.pdf --pdf-engine=lualatex -V documentclass=ltjsarticle --wrap=preserve --template=mytemplate.tex --citeproc --bibliography=sample/sample2.json --csl=jpa2022.csl --lua-filter=modify-bibrecord.lua
 ```
 
 - LaTeXエンジンは`lualatex`を選んでください。`--pdf-engine=lualatex`のオプションを加えます。`xelatex`は和文間のスペースが無視されてしまうので日本語文献の性名の間のスペースが消えます。また日本語のフォントを用いるために`-V documentclass=ltjsarticle`をつけてください。
